@@ -1,0 +1,74 @@
+{% extends 'home.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    <div class="container">
+        <h2 style="text-align: center;">Sign Up</h2>
+        <i style="font-size: 15px;"><a href="{% url 'home' %}" style="color: black;"><img src="https://www.svgrepo.com/show/326885/arrow-back-circle-sharp.svg" style="height: 30px; width: 30px;">back</a></i>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" name="username" maxlength="20" autofocus required id="id_username">
+                <ul>
+                {% for error in form.username.errors %}
+                    <li class="text-danger">{{error}}</li>
+                {% endfor %}
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" name="first_name"  maxlength="100" required id="id_first_name">
+                <ul>
+                {% for error in form.first_name.errors %}
+                    <li class="text-danger">{{error}}</li>
+                {% endfor %}</ul>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" name="last_name"  maxlength="100" required id="id_last_name">
+                <ul>
+                {% for error in form.last_name.errors %}
+                    <li class="text-danger">{{error}}</li>
+                {% endfor %}</ul>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email"  maxlength="254" required id="id_email">
+              </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password1" autocomplete="new-password" required id="id_password1">
+                <ul>
+                {% for error in form.password1.errors %}
+                    <li class="text-danger">{{error}}</li>
+                {% endfor %}</ul>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" name="password2" autocomplete="new-password" required id="id_password2">
+                <ul>
+                {% for error in form.password2.errors %}
+                    <li class="text-danger">{{error}}</li>
+                {% endfor %}</ul>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="border-radius: 20px;">Sign Up</button>
+        </form>
+    </div>
+    {% endblock content %}
+</body>
+</html>

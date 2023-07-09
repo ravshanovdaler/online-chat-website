@@ -1,0 +1,83 @@
+{% extends 'home.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+
+
+
+    <style>
+        #id_message_author{
+            display: none;
+        }
+        #fixed-input {
+          position: fixed;
+          top: 93%;
+          width: 80%;
+          height: 7%;
+          transform: translate(12.5%);
+        }
+        #fixed-input input{
+            height: 100%;
+        }
+        #fixed-input button{
+            height: 100%;
+            
+        }
+      </style> 
+
+
+    <center>
+        <div class="card" style="width: 80%; ">
+            <div class="card-header"><h2>Anonym Chat</h2></div>
+                <div class="card-body"><ul class="list-group">
+                    {% for message in messages %}
+                    
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{message.text}}
+                        <span class="badge badge-primary badge-pill">{{message.date}} | {{message.message_author}}</span>
+                        </li>
+                    
+                    {% endfor %}</ul>
+                </div>
+                </div>
+            <footer class="blockquote-footer">
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control" name="message_author" id="id_message_author" value="{{user.username}}" aria-label="Recipient's username" aria-describedby="basic-addon2" >
+                    <div class="input-group mb-3" id="fixed-input">
+                        <input type="text" class="form-control" name="text" id="id_text" placeholder="Write your message" aria-label="Recipient's username" aria-describedby="basic-addon2" >
+                        <div class="input-group-append">
+                          <button class="btn btn-secondary" type="submit">Send</button>
+                        </div>
+                      </div>
+                </form>
+            </footer>
+        </div>
+    </center>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          var ul = document.querySelector(".list-group");
+          var liList = Array.from(ul.getElementsByTagName("li"));
+          liList.reverse();
+    
+          while (ul.firstChild) {
+            ul.removeChild(ul.firstChild);
+          }
+    
+          for (var i = 0; i < liList.length; i++) {
+            ul.appendChild(liList[i]);
+          }
+        });
+      </script>
+    {% endblock content %}
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% extends 'home.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <style>
+        a:link {
+            text-decoration: none;
+        }
+        button{
+            width: 10%;
+            margin: 3%;
+        }
+    </style>
+        <center>
+            <h1>Do you really want to logout?</h1>
+            <a href="{% url 'home' %}">
+            <button type="button" class="btn btn-primary">
+                    <i style="color: white;">Cancel</i>
+            </button></a>
+            <a href="{% url 'logout' %}">
+            <button type="button" class="btn btn-danger"><a href="{% url 'logout' %}" style="color: white;">
+                <i style="color: white;">Logout</i>
+           </button> </a>
+        </center>
+    {% endblock content %}
+</body>
+</html>

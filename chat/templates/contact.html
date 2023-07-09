@@ -1,0 +1,55 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+<div class="background">
+    <div class="container">
+      <div class="screen">
+        <div class="screen-header">
+          <div class="screen-header-left">
+            <div class="screen-header-button close"></div>
+            <div class="screen-header-button maximize"></div>
+            <div class="screen-header-button minimize"></div>
+          </div>
+          <div class="screen-header-right">
+            
+            <div class="screen-header-ellipsis"></div>
+            <div class="screen-header-ellipsis"></div>
+            <div class="screen-header-ellipsis"></div>
+          </div>
+        </div>
+        <div class="screen-body">
+          <div class="screen-body-item left">
+            <div class="app-title">
+              <span>CONTACT</span>
+              <span>US</span>
+            </div>
+            <div class="app-contact">CONTACT INFO : +998 (91) 316-67-36</div>
+            <div class="app-contact">EMAIL : <a href=mailto:ravshanovdaler06@gmail.com>ravshanovdaler06@gmail.com</a></div>
+          </div>
+          <div class="screen-body-item">
+            <div class="app-form">
+                <form method="post">
+                    {% csrf_token %}
+              <div class="app-form-group">
+                <input class="app-form-control" placeholder="NAME" name="full_name" id="id_full_name">
+              </div>
+              <div class="app-form-group" >
+                <input class="app-form-control" placeholder="EMAIL" name="email" id="id_email">
+              </div>
+              <div class="app-form-group message" >
+                <input class="app-form-control" placeholder="MESSAGE" name="text" id="id_text">
+              </div>
+              <div class="app-form-group buttons">
+               <a href="{% url 'home' %}"><button class="app-form-button">CANCEL</button></a>
+                <button class="app-form-button" type="submit">SEND</button>
+              </div>
+            </div>
+        </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,83 @@
+{% extends 'home.html' %}
+
+
+{% block content %}
+
+    <style>
+        .bodydiv{margin-top:20px;}
+            .avatar{
+                width:200px;
+                height:200px;
+        }
+        button{
+            float: right;
+            height: 10%;
+            width: 20%;
+        }		
+    </style>
+
+
+    <form method="post">{% csrf_token %}
+    <div class="bodydiv">
+        <div class="container bootstrap snippets bootdey">
+            <h1 class="text-primary">Edit Profile</h1>
+              <hr>
+            <div class="row">
+              <!-- left column -->
+              <div class="col-md-3">
+                <div class="text-center">
+                    <svg  xmlns="http://www.w3.org/2000/svg" width="70%" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                      </svg>
+                  
+                </div>
+              </div>
+              
+              <!-- edit form column -->
+              <div class="col-md-9 personal-info">
+                <h3>Personal info</h3>
+                
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">First name:</label>
+                    <div class="col-lg-8">
+                        <input type="text" name="first_name" value="{{user.first_name}}" maxlength="100" required id="id_first_name" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Last name:</label>
+                    <div class="col-lg-8">
+                        <input type="text" name="last_name" value="{{user.last_name}}" maxlength="100" required id="id_last_name" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Username:</label>
+                    <div class="col-lg-8">
+                        <input type="text" name="username" value="{{user.username}}" maxlength="20" required id="id_username" class="form-control">
+                        <ul>
+                            {% for error in form.username.errors %}
+                                <li class="text-danger">{{error}}</li>
+                            {% endfor %}
+                            </ul>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Email:</label>
+                    <div class="col-lg-8">
+                        <input type="email" name="email" value="{{user.email}}" required id="id_email" class="form-control">
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" type="submit">Save</button>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+          </div>
+        </div>
+        <hr>
+    </form>
+</div>
+{% endblock content %}
